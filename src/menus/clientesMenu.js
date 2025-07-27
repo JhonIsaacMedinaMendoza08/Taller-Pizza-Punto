@@ -1,4 +1,5 @@
 const inquirer = require('inquirer');
+const chalk = require('chalk');
 const {
     registrarNuevoCliente,
     mostrarClientes,
@@ -10,37 +11,51 @@ async function gestionarClientes(db) {
     let salir = false;
 
     while (!salir) {
+        console.clear();
+        console.log(chalk.blueBright('\n👤 Gestión de Clientes'));
+        console.log(chalk.gray('────────────────────────────────────────────\n'));
+
         const { opcion } = await inquirer.prompt([
             {
                 type: 'list',
                 name: 'opcion',
-                message: '👤 Gestión de Clientes - Elige una opción:',
+                message: chalk.cyan('📋 Elige una opción:'),
                 choices: [
-                    'Registrar nuevo cliente',
-                    'Ver clientes',
-                    'Editar cliente',
-                    'Eliminar cliente',
+                    '🆕 Registrar nuevo cliente',
+                    '📄 Ver clientes',
+                    '✏️ Editar cliente',
+                    '🗑️ Eliminar cliente',
                     '⬅️ Volver al menú principal'
                 ]
             }
         ]);
 
         switch (opcion) {
-            case 'Registrar nuevo cliente':
+            case '🆕 Registrar nuevo cliente':
                 await registrarNuevoCliente(db);
                 break;
-            case 'Ver clientes':
+            case '📄 Ver clientes':
                 await mostrarClientes(db);
                 break;
-            case 'Editar cliente':
+            case '✏️ Editar cliente':
                 await editarCliente(db);
                 break;
-            case 'Eliminar cliente':
+            case '🗑️ Eliminar cliente':
                 await eliminarCliente(db);
                 break;
             case '⬅️ Volver al menú principal':
                 salir = true;
                 break;
+        }
+
+        if (!salir) {
+            await inquirer.prompt([
+                {
+                    type: 'input',
+                    name: 'continuar',
+                    message: chalk.gray('\nPresiona ENTER para continuar...')
+                }
+            ]);
         }
     }
 }
