@@ -8,12 +8,11 @@ async function obtenerIngredientes(db) {
     return db.collection('ingredientes').find().toArray();
 }
 
-async function actualizarStockIngredeinte(db, nombre, cantidad) {
+async function actualizarStockIngrediente(db, nombre, nuevoStock) {
     return db.collection('ingredientes').updateOne(
-        { nombre: nombre },
-        { $inc: { stock: cantidad } }
+        { nombre },
+        { $set: { stock: nuevoStock } }
     );
-    
 }
 
 async function eliminarIngrediente(db, nombre) {
@@ -23,6 +22,6 @@ async function eliminarIngrediente(db, nombre) {
 module.exports = {
     crearIngrediente,
     obtenerIngredientes,
-    actualizarStockIngredeinte,
+    actualizarStockIngrediente,
     eliminarIngrediente
 };
