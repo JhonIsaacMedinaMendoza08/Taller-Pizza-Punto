@@ -2,6 +2,8 @@ const inquirer = require('inquirer');
 const connectDB = require('./src/utils/db.js');
 const gestionarIngredientes = require('./src/menus/ingredientesMenu');
 const gestionarPizzas = require('./src/menus/pizzasMenu.js');
+const gestionarClientes = require('./src/menus/clientesMenu.js');
+
 
 
 (async () => {
@@ -15,6 +17,7 @@ const gestionarPizzas = require('./src/menus/pizzasMenu.js');
             choices: [
                 'Gestionar Pizzas',
                 'Gestionar ingredientes',
+                'Gestionar Clientes',
                 'Salir'
             ]
         }
@@ -26,6 +29,10 @@ const gestionarPizzas = require('./src/menus/pizzasMenu.js');
 
     if (opcion === 'Gestionar ingredientes') {
         await gestionarIngredientes(db);
+    }
+
+    if (opcion === 'Gestionar Clientes') {
+        await gestionarClientes(db);
     }
 
     if (opcion === 'Salir') {
