@@ -4,11 +4,12 @@ const gestionarIngredientes = require('./src/menus/ingredientesMenu');
 const gestionarPizzas = require('./src/menus/pizzasMenu.js');
 const gestionarClientes = require('./src/menus/clientesMenu.js');
 const gestionarRepartidores = require('./src/menus/repartidoresMenu.js');
+const {realizarPedido} = require('./src/services/pedidoService.js');
 
 
 
 (async () => {
-    const db = await connectDB();
+    const { db, client } = await connectDB();
 
     const { opcion } = await inquirer.prompt([
         {
@@ -16,6 +17,7 @@ const gestionarRepartidores = require('./src/menus/repartidoresMenu.js');
             name: 'opcion',
             message: '📦 ¿Qué deseas hacer?',
             choices: [
+                'Realizar nuevo Pedido',
                 'Gestionar Pizzas',
                 'Gestionar ingredientes',
                 'Gestionar Clientes',
@@ -24,6 +26,10 @@ const gestionarRepartidores = require('./src/menus/repartidoresMenu.js');
             ]
         }
     ]);
+
+    if (opcion === 'Realizar nuevo Pedido') {
+        await realizarPedido(db, client);
+    }
 
     if (opcion === 'Gestionar Pizzas') {
         await gestionarPizzas(db);
