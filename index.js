@@ -3,6 +3,7 @@ const connectDB = require('./src/utils/db.js');
 const gestionarIngredientes = require('./src/menus/ingredientesMenu');
 const gestionarPizzas = require('./src/menus/pizzasMenu.js');
 const gestionarClientes = require('./src/menus/clientesMenu.js');
+const gestionarRepartidores = require('./src/menus/repartidoresMenu.js');
 
 
 
@@ -18,6 +19,7 @@ const gestionarClientes = require('./src/menus/clientesMenu.js');
                 'Gestionar Pizzas',
                 'Gestionar ingredientes',
                 'Gestionar Clientes',
+                'Gestionar Repartidores',
                 'Salir'
             ]
         }
@@ -33,6 +35,10 @@ const gestionarClientes = require('./src/menus/clientesMenu.js');
 
     if (opcion === 'Gestionar Clientes') {
         await gestionarClientes(db);
+    }
+
+    if (opcion === 'Gestionar Repartidores') {
+        await gestionarRepartidores(db);
     }
 
     if (opcion === 'Salir') {
