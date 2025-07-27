@@ -14,21 +14,18 @@ async function registrarNuevoIngrediente(db) {
             message: "📦 Stock del ingrediente:",
         },
         {
-            type: "input",
+            type: "list",
             name: "tipo",
             message: "Tipo de ingrediente: ",
-        },
-        {
-            type: "number",
-            name: "precio",
-            message: "💰 Precio del ingrediente:",
-        },
+            choices: ["Salsas", "Quesos", "Toppings Cárnicos", "Toppings Vegetales", "Extras"],
+
+        }
     ]);
 
     const ingrediente = {
         nombre: respuestas.nombre,
         stock: respuestas.stock,
-        precio: respuestas.precio,
+        tipo: respuestas.tipo,
     };
 
     await crearIngrediente(db, ingrediente);
