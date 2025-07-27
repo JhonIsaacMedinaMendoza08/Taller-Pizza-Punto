@@ -35,9 +35,10 @@ npm install
 3. Crea tu archivo `.env`:
 
 ```env
-MONGO_URI=mongodb+srv://<usuario>:<password>@<cluster>.mongodb.net/pizza_y_punto?retryWrites=true&w=majority
+MONGO_URI=mongodb+srv://maestroPizza:revisapizza2025@mycluster.vlbhwms.mongodb.net/pizza_y_punto?retryWrites=true&w=majority&appName=MyCluster
+
 ```
-> Reemplaza con tus datos reales de MongoDB Atlas
+> Crea el archivo .env y copia esta URI para conectarte a mi base de datos de pruebas en Mongo Atlas
 
 ---
 
